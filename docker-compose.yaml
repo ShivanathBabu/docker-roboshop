@@ -3,6 +3,7 @@ networks:
     driver: bridge
     name: roboshop
     external: true # already roboshop network created
+
 services:
   mongodb:
     image: shivanathbabu/mongodb:v1
@@ -36,3 +37,10 @@ services:
     depends_on:
     - cart
     - sql
+  rabbitmq:
+    image: rabbitmq:3
+    container_name: rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: roboshop
+      RABBITMQ_DEFAULT_PASS: roboshop123
+      
