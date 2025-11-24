@@ -1,0 +1,38 @@
+networks:
+  default:
+    driver: bridge
+    name: roboshop
+    external: true # already roboshop network created
+services:
+  mongodb:
+    image: shivanathbabu/mongodb:v1
+    container_name: mongodb
+  catalogue:
+    image: shivanathbabu/catalogue:v1
+    container_name: catalogue
+    depends_on:
+    - mongodb
+  redis:
+    image: redis:7.0
+    container_name: redis
+  user:
+    image: shivanathbabu/user:v1
+    container_name: user
+    depends_on:
+    - redis
+    - mongodb
+  cart:
+    image: shivanathbabu/cart:v1
+    container_name: cart
+    depends_on:
+    - redis
+    - catalogue
+  sql:
+    image: shivanathbabu/sql:v1
+    container_name: sql
+  shipping:
+    image: shivanathbabu/shipping:v1
+    container_name: shipping
+    depends_on:
+    - cart
+    - sql
