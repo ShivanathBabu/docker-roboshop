@@ -9,5 +9,5 @@ else
 fi
 
 export MYSQL_ROOT_PASSWORD=$password
-
+rm -rf /tmp/mysql_root_password.txt
 exec /entrypoint.sh mysqld
