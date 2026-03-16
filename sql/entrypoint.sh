@@ -8,6 +8,6 @@ else
     exit 1
 fi
 
-export mysql_root_password=$password
+export MYSQL_ROOT_PASSWORD=$password
 
 exec /entrypoint.sh mysqld
